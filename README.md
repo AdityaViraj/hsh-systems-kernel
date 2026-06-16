@@ -24,3 +24,6 @@ git clone [https://github.com/adityaviraj/hsh-systems-kernel.git](https://github
 cd hsh-systems-kernel
 gcc main.c -o hsh
 ./hsh
+
+
+![Shell Demo](https://github.com/AdityaViraj/hsh-systems-kernel/blob/main/assets/Screenshot%202026-06-16%20at%203.56.50%E2%80%AFPM.png)
