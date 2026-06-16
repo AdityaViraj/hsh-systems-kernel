@@ -18,6 +18,9 @@
 - GCC compiler
 - A Unix like environment
 
+
+## Output
+
 ![Shell Demo](https://github.com/AdityaViraj/hsh-systems-kernel/blob/main/assets/Screenshot%202026-06-16%20at%203.56.50%E2%80%AFPM.png)
 
 
