@@ -2,7 +2,7 @@
 
 `hsh` is a custom, Unix shell written in C. It serves as an exploration of the interface between user space applications and the Linux/Unix kernel.
 
-## 🛠️ Tech Stack
+## Tech Stack
 - **Language:** C 
 - **Toolchain:** GCC, Git, Make
 - **Architecture:** POSIX compliant process control
