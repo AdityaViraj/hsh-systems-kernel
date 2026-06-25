@@ -18,11 +18,11 @@
 - GCC compiler
 - A Unix like environment
 
-![Shell Running ls -l command](assets/Screenshot%202026-06-16%20at%203.04.24%20PM.jpg)\
-
 ### Build & Run
 ```bash
 git clone [https://github.com/adityaviraj/hsh-systems-kernel.git](https://github.com/adityaviraj/hsh-systems-kernel.git)
 cd hsh-systems-kernel
-gcc main.c -o hsh
+make clean && make
 ./hsh
+
+

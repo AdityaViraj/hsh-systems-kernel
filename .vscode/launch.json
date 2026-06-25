@@ -6,8 +6,8 @@
       "type": "lldb",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/adityaviraj/Desktop/hsh-systems-kernel/labs",
-      "program": "/Users/adityaviraj/Desktop/hsh-systems-kernel/labs/build/Debug/outDebug"
+      "cwd": "/Users/adityaviraj/Desktop/hsh-systems-kernel/src",
+      "program": "/Users/adityaviraj/Desktop/hsh-systems-kernel/src/build/Debug/outDebug"
     }
   ]
 }
