@@ -1,16 +1,17 @@
-# hsh: A Hardware Aware Shell
+# '**hsh**': A Hardware Aware Shell
 
 A personal project to build a command line interpreter from scratch in C. This serves as an interface between the User and the Operating System.
 
 ## How it is built ?
+
 This shell runs on the concept of REPL (Read Evaluate Print Loop). This continously reads the input then tokenises and manages process lifecycles.
 - Process Management : Used fork() to create the child process and execvp() to replace the child's memory with the folloeing binaries. Also used waitpid() to synchronise execution.
 - Path resolution : The shell retirves the PATH of the system using the getenv() and uses access() to locate the binary files.
 - Memory Management : Handled dynamic allocation for all the tokens and ensuring every command cycle cleans up to prevent memory leaks.
 
-## Project Structure
+## Structure
 
-| File | Role |
+| File Name | Its Role |
 | --- | --- |
 | `main.c` | The main entry point of the shell that manages the REPL loop. |
 | `shell.h` | It defines the global variables and function prototypes. |
