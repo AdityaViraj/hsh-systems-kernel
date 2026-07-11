@@ -11,4 +11,3 @@ int execute_command(char *path,char **args,int is_background,char *out_filed,cha
 int execute_piped_commands(char **args1,char **args2);
 
 #endif
-
