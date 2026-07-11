@@ -8,25 +8,36 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <string.h>
+#include "metal.h"
 
 int execute_builtins(char **args)
 {
-    if(strcmp(args[0],"exit")==0) return 1;  // Handled by main
+    if(args[0]==NULL)
+    {
+        return 0;
+    }
+
+    if(strcmp(args[0],"exit")==0)
+    {
+        metal_exit(0); // hardware level exit
+    }
     
     if(strcmp(args[0],"cd")==0)
     {
-        if(args[1]==NULL) 
-        // To print stderr we need fprintf as printf alwaya prints the standard outputs.
-        fprintf(stderr,"hsh:cd missing argument\n");
-        else if (chdir (args[1])!=0) 
-        perror("hsh");
-        return 1; //Bulit in handled
+        if(args[1]==NULL)
+        {
+            fprintf(stderr,"hsh: cd missing argument\n");
+        }
+        else if (chdir(args[1])!=0)
+        {
+            perror("hsh");
+        }
+        return 1; // Built in handled
     }
-    return 0; //Not built in 
+    return 0; // not a built in
 }
-
-
     
+
     
     
     
