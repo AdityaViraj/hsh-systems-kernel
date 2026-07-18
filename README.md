@@ -22,14 +22,47 @@ This shell runs on the concept of REPL (Read Evaluate Print Loop). This continou
 | `get_line.c` | It buffers raw input from the terminal for processing. |
 | `Makefile` | It compiles the source code files into direct executable binary by defining the rules and dependencies for all the source code files.|
 
+## Requirements
+
+`hsh` is a POSIX shell — it relies on `fork()`, `execvp()`, and raw Linux/Darwin syscalls, so it needs a real POSIX kernel underneath it.
+
+| Platform | Supported? | What you need |
+| --- | --- | --- |
+| macOS (Intel or Apple Silicon) | ✅ Native | Xcode Command Line Tools (`xcode-select --install`) — provides `clang`, `make` |
+| Linux (x86_64 or arm64) | ✅ Native | `build-essential` (Debian/Ubuntu) or equivalent — provides `gcc`/`cc`, `make` |
+| Windows | ✅ Via WSL2 only | [WSL2](https://learn.microsoft.com/windows/wsl/install) running Ubuntu (or any Linux distro), then follow the Linux steps inside it |
+
+**Windows note:** `hsh` cannot be built with MSVC or run as a native `.exe` — Windows doesn't have `fork()`, and its syscall ABI is completely different from the Linux/Darwin one this shell talks to directly in `metal.h`. WSL2 gives you a real Linux kernel, so the Linux build instructions below work unchanged inside it.
+
 ## Build & Run
 
 ```bash
 git clone https://github.com/AdityaViraj/hsh-systems-kernel
 cd hsh-systems-kernel
-make clean && make
+make
 ./hsh
-
 ```
 
-**NOTE:** You might see a security warning because this is a custom compiled binary. To bypass this issue right click the `hsh` file , select Open  and click  Open again in the confirmation window.
+That's it on macOS, Linux, and inside WSL2 — the `Makefile` picks a working compiler (`clang` on macOS, `gcc` on Linux) automatically via the `cc` alias, so there's no platform-specific flag to remember.
+
+If you ever need to force a specific compiler:
+
+```bash
+make CC=gcc      # or CC=clang
+```
+
+To rebuild from scratch:
+
+```bash
+make clean && make
+```
+
+To build and immediately drop into the shell in one step:
+
+```bash
+make run
+```
+
+### macOS Gatekeeper note
+
+Since `hsh` is a locally compiled, unsigned binary, macOS may show a security warning the first time you run it. If that happens: right-click `hsh` in Finder → **Open** → **Open** again in the confirmation dialog. This only needs to be done once.
