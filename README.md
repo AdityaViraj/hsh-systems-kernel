@@ -6,10 +6,13 @@ This is my attempt at building a shell completely from scratch in C — no short
 At its heart hsh is just a REPL — Read, Evaluate, Print, Loop — an infinite loop that keeps reading whatever you type, chews it up, and hands it off to the OS. Sounds trivial until you realize "handing it off to the OS" means doing everything yourself instead of letting libc quietly do it for you.
 
 
-Process Management: Every time you hit enter, I fork() a brand new child process and execvp() inside it to swap that child's memory out for whatever binary you asked for. The parent just sits there on waitpid() until the child's done, so nothing runs out of order.
-Path resolution: When you type a bare command like ls, the shell has no clue where that lives — so I grab PATH with getenv(), split it apart, and walk every directory in it with access() until something matches. Basically doing by hand what your terminal normally hides from you.
-Memory Management: Every token gets allocated as the input gets parsed, and every single command cycle cleans that memory back up before the next prompt — no leaks piling up after a thousand commands.
-Hardware-level primitives (metal.h): This is the part I'm most proud of. Instead of calling the standard exit() and letting libc handle it, I hand-wrote raw syscalls for exit and cycle-counting — split by OS and CPU, because it turns out macOS and Linux don't even agree on what number "exit" is! Got that wrong once and lost an evening figuring out why the shell just... refused to exit on Linux.
+**Process Management:** Every time you hit enter, I fork() a brand new child process and execvp() inside it to swap that child's memory out for whatever binary you asked for. The parent just sits there on waitpid() until the child's done, so nothing runs out of order.
+
+**Path resolution:** When you type a bare command like ls, the shell has no clue where that lives — so I grab PATH with getenv(), split it apart, and walk every directory in it with access() until something matches. Basically doing by hand what your terminal normally hides from you.
+
+**Memory Management:** Every token gets allocated as the input gets parsed, and every single command cycle cleans that memory back up before the next prompt — no leaks piling up after a thousand commands.
+
+**Hardware-level primitives:** This is the part I'm most proud of. Instead of calling the standard exit() and letting libc handle it, I hand-wrote raw syscalls for exit and cycle-counting — split by OS and CPU, because it turns out macOS and Linux don't even agree on what number "exit" is! Got that wrong once and lost an evening figuring out why the shell just... refused to exit on Linux.
 
 ## Requirements
 
