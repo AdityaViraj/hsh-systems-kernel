@@ -1,7 +1,7 @@
 # '**hsh**': A Hardware Aware Shell
 This is my attempt at building a shell completely from scratch in C — no shortcuts, no wrapping around system(). It sits between you and the OS and actually talks to the kernel directly for the stuff that matters.
 
-How it is built?
+## How it is built?
 
 At its heart hsh is just a REPL — Read, Evaluate, Print, Loop — an infinite loop that keeps reading whatever you type, chews it up, and hands it off to the OS. Sounds trivial until you realize "handing it off to the OS" means doing everything yourself instead of letting libc quietly do it for you.
 
