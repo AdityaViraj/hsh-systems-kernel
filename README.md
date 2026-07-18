@@ -36,6 +36,9 @@ This shell runs on the concept of REPL (Read Evaluate Print Loop). This continou
 
 ## Build & Run
 
+> ⚠️ **Always build from source — never run a checked-in `hsh` binary.**
+> A compiled binary is tied to the exact OS and CPU architecture it was built on (e.g. a binary built on Apple Silicon is macOS-arm64-only and simply won't execute on Linux, Windows/WSL, or even an Intel Mac). There is no binary that runs on "any computer" — `make` is what makes this project portable, not the executable it produces. If you see an `hsh` file already sitting in the repo, delete it and rebuild.
+
 ```bash
 git clone https://github.com/AdityaViraj/hsh-systems-kernel
 cd hsh-systems-kernel
