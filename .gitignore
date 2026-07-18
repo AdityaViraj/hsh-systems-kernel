@@ -1,4 +1,4 @@
 hsh
-build/
-.vscode/
-.DS_Store
+src/*.o
+*.o
+*.dSYM/
